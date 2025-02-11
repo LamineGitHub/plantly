@@ -1,36 +1,24 @@
-import { Alert, View } from "react-native";
-import { useState } from "react";
-import { PlantlyImage } from "@/components/PlantlyImage";
-import { PlantlyButton } from "@/components/PlantlyButton";
-import { PlantyRowForm } from "@/components/PlantyRowForm";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import { View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { PlantlyButton } from "@/components/PlantlyButton";
+import { PlantlyImage } from "@/components/PlantlyImage";
+import { PlantyRowForm } from "@/components/PlantyRowForm";
+import { type PlantFormData, plantSchema } from "@/schemas/plant";
 
 export default function NewPlant() {
-  const [name, setName] = useState("");
-  const [days, setDays] = useState("");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PlantFormData>({
+    defaultValues: { name: "", days: 0 },
+    resolver: zodResolver(plantSchema),
+    mode: "onBlur",
+  });
 
-  // todo: form with react-hook-form
-  const handleSubmit = () => {
-    if (!name) {
-      return Alert.alert("Validation Error", "Give your plant a name");
-    }
-
-    if (!days) {
-      return Alert.alert(
-        "Validation Error",
-        `How often does ${name} need to be watered?`,
-      );
-    }
-
-    if (Number.isNaN(Number(days))) {
-      return Alert.alert(
-        "Validation Error",
-        "Watering frequency must be a be a number",
-      );
-    }
-
-    setName("");
-    setDays("");
+  const onSubmit = ({ name, days }: PlantFormData) => {
     console.log(`Adding plant : name = ${name} and days = ${days}`);
   };
 
@@ -43,21 +31,40 @@ export default function NewPlant() {
       <View className="items-center">
         <PlantlyImage />
       </View>
-      <PlantyRowForm
-        label="Name"
-        placeholder="E.g. Casper the Cactus"
-        value={name}
-        onChange={setName}
-        autoCapitalize="words"
+
+      <Controller
+        control={control}
+        name="name"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <PlantyRowForm
+            label="Name"
+            placeholder="E.g. Casper the Cactus"
+            onChange={onChange}
+            value={value}
+            onBlur={onBlur}
+            autoCapitalize="words"
+            error={errors.name}
+          />
+        )}
       />
-      <PlantyRowForm
-        label="Watering Frequency (every x days)"
-        placeholder="E.g. 7"
-        value={days}
-        onChange={setDays}
-        keyboardType="number-pad"
+
+      <Controller
+        control={control}
+        name="days"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <PlantyRowForm
+            label="Watering Frequency (every x days)"
+            placeholder="E.g. 5"
+            onChange={onChange}
+            value={value}
+            onBlur={onBlur}
+            keyboardType="number-pad"
+            error={errors.days}
+          />
+        )}
       />
-      <PlantlyButton title="Add plant" onPress={handleSubmit} />
+
+      <PlantlyButton title="Add plant" onPress={handleSubmit(onSubmit)} />
     </KeyboardAwareScrollView>
   );
 }

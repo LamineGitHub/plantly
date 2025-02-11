@@ -18,6 +18,7 @@ module.exports = {
         "inter-semiBold": ["Inter-semibold", "sans-serif"],
         "inter-medium": ["Inter-medium", "sans-serif"],
         inter: ["Inter-regular", "sans-serif"],
+        "inter-italic": ["Inter-italic", "sans-serif"],
         caveat: ["Caveat", "sans-serif"],
       },
     },

@@ -1,19 +1,19 @@
+import ErrorForm from "@/components/ErrorForm";
+import { FormFieldProps } from "@/types";
 import React from "react";
+import { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { Text, TextInput, View } from "react-native";
 
-type Props = {
-  label: string;
-  placeholder: string;
-  value: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
-  [propName: string]: {};
-};
+type Props = FormFieldProps &
+  Partial<ControllerRenderProps<FieldValues, string>>;
 
 export function PlantyRowForm({
   label,
   placeholder,
   value,
   onChange,
+  onBlur,
+  error,
   ...rest
 }: Props) {
   return (
@@ -23,9 +23,13 @@ export function PlantyRowForm({
         value={value}
         placeholder={placeholder}
         onChangeText={onChange}
-        className="rounded-md border border-colorLightGrey px-3 font-inter text-lg"
+        onBlur={onBlur}
+        className={`rounded-md border px-3 font-inter text-lg ${
+          error ? "border-red-500" : "border-gray-300"
+        }`}
         {...rest}
       />
+      <ErrorForm message={error?.message} />
     </View>
   );
 }

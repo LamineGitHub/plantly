@@ -1,0 +1,30 @@
+import { z } from "zod";
+
+export const plantSchema = z.object({
+  name: z
+    .string({
+      required_error: "Plant name is required",
+      invalid_type_error: "Plant name must be a string",
+    })
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name must be less than 50 characters")
+    .refine((name) => name.length > 0, "Name cannot be empty")
+    .refine(
+      (name) => /^[a-zA-Z\s'-][a-zA-Z0-9\s'-]*$/.test(name),
+      "Name can only contain letters, spaces, hyphens and apostrophes, and cannot start with a number",
+    ),
+  days: z
+    .string({
+      required_error: "Watering frequency is required",
+      invalid_type_error: "Watering frequency must be a number",
+    })
+    .trim()
+    .regex(/^[1-9][0-9]*$/, "Please enter a valid number greater than 0")
+    .transform((val) => parseInt(val, 10))
+    .refine((days) => days > 0, "Days must be greater than 0")
+    .refine((days) => days <= 365, "Maximum watering interval is 365 days"),
+});
+
+// Successful parsed data type
+export type PlantFormData = z.infer<typeof plantSchema>;

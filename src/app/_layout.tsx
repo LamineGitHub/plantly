@@ -12,6 +12,7 @@ export default function RootLayout() {
     "Inter-medium": require("@/assets/fonts/Inter-Medium.ttf"),
     "Inter-regular": require("@/assets/fonts/Inter-Regular.ttf"),
     "Inter-semibold": require("@/assets/fonts/Inter-SemiBold.ttf"),
+    "Inter-italic": require("@/assets/fonts/Inter-Italic.ttf"),
     Caveat: require("@/assets/fonts/Caveat-Regular.ttf"),
   });
 
