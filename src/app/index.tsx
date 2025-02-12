@@ -1,11 +1,11 @@
+import { Text, View } from "react-native";
 import { useRouter } from "expo-router";
-import { useUserStore } from "@/store/useStore";
 import { PlantlyButton } from "@/components/PlantlyButton";
 import { LinearGradient } from "expo-linear-gradient";
 import { theme } from "@/theme";
 import { StatusBar } from "expo-status-bar";
 import { PlantlyImage } from "@/components/PlantlyImage";
-import { Text, View } from "react-native";
+import { useUserStore } from "@/store/useStore";
 
 export default function OnboardingScreen() {
   const router = useRouter();

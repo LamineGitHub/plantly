@@ -6,7 +6,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 export const useUserStore = create(
   persist<UserState>(
     (set) => ({
-      hasFinishedOnboarding: false,
+      hasFinishedOnboarding: true,
       toggleHasOnboarded: () => {
         set((state) => ({
           hasFinishedOnboarding: !state.hasFinishedOnboarding,

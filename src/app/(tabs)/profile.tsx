@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
-import { useUserStore } from "@/store/useStore";
 import { PlantlyButton } from "@/components/PlantlyButton";
+import { useUserStore } from "@/store/useStore";
 
 export default function Profile() {
   const toggleHasOnboarded = useUserStore((s) => s.toggleHasOnboarded);

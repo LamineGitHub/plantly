@@ -1,8 +1,8 @@
 import { Link, Redirect, Tabs } from "expo-router";
 import { CirclePlus, Leaf, User } from "lucide-react-native";
-import { useUserStore } from "@/store/useStore";
 import { Pressable } from "react-native";
 import { theme } from "@/theme";
+import { useUserStore } from "@/store/useStore";
 
 export default function Layout() {
   const hasFinishedOnboarding = useUserStore((s) => s.hasFinishedOnboarding);
