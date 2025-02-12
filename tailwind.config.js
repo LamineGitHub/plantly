@@ -1,5 +1,5 @@
 import { theme } from "./src/theme";
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -11,7 +11,6 @@ module.exports = {
         colorLeafyGreen: theme.colorLeafyGreen,
         colorAppleGreen: theme.colorAppleGreen,
         colorLimeGreen: theme.colorLimeGreen,
-        colorLightGrey: theme.colorLightGrey,
       },
       fontFamily: {
         "inter-bold": ["Inter-bold", "sans-serif"],
