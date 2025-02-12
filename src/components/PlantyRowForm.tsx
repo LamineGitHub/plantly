@@ -29,7 +29,9 @@ export function PlantyRowForm({
         {...rest}
       />
       {error?.message && (
-        <Text className="mt-2 text-red-500">{error?.message}</Text>
+        <Text className="mt-2 font-inter-italic text-sm text-red-500">
+          {error.message}
+        </Text>
       )}
     </View>
   );

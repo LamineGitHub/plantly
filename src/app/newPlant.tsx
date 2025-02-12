@@ -1,25 +1,33 @@
+import { View } from "react-native";
+import { useRouter } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
-import { View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { PlantlyButton } from "@/components/PlantlyButton";
 import { PlantlyImage } from "@/components/PlantlyImage";
 import { PlantyRowForm } from "@/components/PlantyRowForm";
-import { type PlantFormData, plantSchema } from "@/schemas/plant";
+import { createPlantSchema, type PlantFormData } from "@/schemas/plant";
+import { usePlantStore } from "@/store/plantsStore";
 
 export default function NewPlant() {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<PlantFormData>({
     defaultValues: { name: "", days: 0 },
-    resolver: zodResolver(plantSchema),
+    resolver: zodResolver(createPlantSchema()),
     mode: "onBlur",
   });
 
+  const addPlant = usePlantStore((state) => state.addPlant);
+  const router = useRouter();
+
   const onSubmit = ({ name, days }: PlantFormData) => {
-    console.log(`Adding plant : name = ${name} and days = ${days}`);
+    addPlant(name, days);
+    reset();
+    router.back();
   };
 
   return (

@@ -5,9 +5,15 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 export const usePlantStore = create<PlantsState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       nextId: 1,
       plants: [],
+      doesPlantExist: (name: string) => {
+        const state = get();
+        return state.plants.some(
+          (plant) => plant.name.toLowerCase() === name.toLowerCase(),
+        );
+      },
       addPlant: (name, wateringFrequencyDays) => {
         set((state) => ({
           ...state,
@@ -26,6 +32,12 @@ export const usePlantStore = create<PlantsState>()(
         set((state) => ({
           ...state,
           plants: state.plants.filter((plant) => plant.id !== plantId),
+        }));
+      },
+      resetPlants: () => {
+        set(() => ({
+          nextId: 1,
+          plants: [],
         }));
       },
       waterPlant: (plantId) => {
