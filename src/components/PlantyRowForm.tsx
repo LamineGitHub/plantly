@@ -1,4 +1,3 @@
-import ErrorForm from "@/components/ErrorForm";
 import { FormFieldProps } from "@/types";
 import React from "react";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
@@ -29,7 +28,9 @@ export function PlantyRowForm({
         }`}
         {...rest}
       />
-      <ErrorForm message={error?.message} />
+      {error?.message && (
+        <Text className="mt-2 text-red-500">{error?.message}</Text>
+      )}
     </View>
   );
 }
