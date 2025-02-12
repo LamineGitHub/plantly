@@ -8,7 +8,7 @@ export default function Layout() {
   const hasFinishedOnboarding = useUserStore((s) => s.hasFinishedOnboarding);
 
   if (!hasFinishedOnboarding) {
-    return <Redirect href="/onboarding" />;
+    return <Redirect href="/" />;
   }
 
   return (
@@ -20,7 +20,7 @@ export default function Layout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: "Home",
           headerShown: true,

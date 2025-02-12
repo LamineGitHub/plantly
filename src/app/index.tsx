@@ -13,7 +13,7 @@ export default function OnboardingScreen() {
 
   const handlePress = () => {
     toggleHasOnboarded();
-    router.replace("/");
+    router.replace("/home");
   };
 
   return (

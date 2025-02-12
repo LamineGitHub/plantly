@@ -27,11 +27,8 @@ export default function RootLayout() {
     <>
       <StatusBar style="auto" />
       <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
         <Stack.Screen name="(tabs)" options={{ animation: "fade" }} />
-        <Stack.Screen
-          name="onboarding"
-          options={{ presentation: "modal", animation: "fade" }}
-        />
         <Stack.Screen
           name="newPlant"
           options={{
