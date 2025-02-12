@@ -35,4 +35,5 @@ export const createPlantSchema = () => {
   });
 };
 
+// Successful parsed data type
 export type PlantFormData = z.infer<ReturnType<typeof createPlantSchema>>;

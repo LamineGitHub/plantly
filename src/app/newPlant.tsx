@@ -1,8 +1,11 @@
-import { View } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
+import { useState } from "react";
 import { useRouter } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as ImagePicker from "expo-image-picker";
+
 import { PlantlyButton } from "@/components/PlantlyButton";
 import { PlantlyImage } from "@/components/PlantlyImage";
 import { PlantyRowForm } from "@/components/PlantyRowForm";
@@ -23,11 +26,27 @@ export default function NewPlant() {
 
   const addPlant = usePlantStore((state) => state.addPlant);
   const router = useRouter();
+  const [imageUri, setImageUri] = useState("");
 
   const onSubmit = ({ name, days }: PlantFormData) => {
-    addPlant(name, days);
+    addPlant(name, days, imageUri);
     reset();
     router.back();
+  };
+
+  const handleChooseImage = async () => {
+    if (Platform.OS === "web") return;
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImageUri(result.assets[0].uri);
+    }
   };
 
   return (
@@ -36,9 +55,13 @@ export default function NewPlant() {
       contentContainerClassName="px-6 pb-28 pt-6 gap-6"
       keyboardShouldPersistTaps="handled"
     >
-      <View className="items-center">
-        <PlantlyImage />
-      </View>
+      <TouchableOpacity
+        className="items-center rounded-lg border-2 border-dashed border-gray-300"
+        onPress={handleChooseImage}
+        activeOpacity={0.7}
+      >
+        <PlantlyImage imageUri={imageUri} />
+      </TouchableOpacity>
 
       <Controller
         control={control}

@@ -14,6 +14,7 @@ export type PlantType = {
   name: string;
   wateringFrequencyDays: number;
   lastWateredAtTimestamp?: number;
+  imageUri?: string;
 };
 
 // Store Types
@@ -26,7 +27,11 @@ export type PlantsState = {
   nextId: number;
   plants: PlantType[];
   doesPlantExist: (name: string) => boolean;
-  addPlant: (name: string, wateringFrequencyDays: number) => void;
+  addPlant: (
+    name: string,
+    wateringFrequencyDays: number,
+    imageUri?: string,
+  ) => Promise<void>;
   removePlant: (plantId: string) => void;
   resetPlants: () => void;
   waterPlant: (plantId: string) => void;
