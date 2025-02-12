@@ -1,9 +1,8 @@
-import { Platform, Pressable, Text } from "react-native";
+import { Platform, Pressable, Text, ViewProps } from "react-native";
 import * as Haptics from "expo-haptics";
 
-type Props = {
+type Props = ViewProps & {
   title: string;
-  className?: string;
   onPress: () => void;
 };
 

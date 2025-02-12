@@ -6,10 +6,10 @@ import { useRouter } from "expo-router";
 
 export default function Profile() {
   const router = useRouter();
+  const resetPlants = usePlantStore((state) => state.resetPlants);
   const setHasFinishedOnboarding = useUserStore(
     (s) => s.setHasFinishedOnboarding,
   );
-  const resetPlants = usePlantStore((state) => state.resetPlants);
 
   return (
     <View className="flex-1 items-center justify-center gap-4 bg-white">
@@ -19,7 +19,7 @@ export default function Profile() {
         onPress={() => setHasFinishedOnboarding(true)}
       />
       <PlantlyButton
-        title="Delete all Plant"
+        title="Delete all Plants"
         className="bg-red-500 active:bg-red-800"
         onPress={() => {
           resetPlants();
