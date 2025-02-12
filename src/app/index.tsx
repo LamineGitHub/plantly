@@ -9,11 +9,13 @@ import { useUserStore } from "@/store/useStore";
 
 export default function OnboardingScreen() {
   const router = useRouter();
-  const toggleHasOnboarded = useUserStore((state) => state.toggleHasOnboarded);
+  const setHasFinishedOnboarding = useUserStore(
+    (state) => state.setHasFinishedOnboarding,
+  );
 
   const handlePress = () => {
-    toggleHasOnboarded();
     router.replace("/home");
+    setHasFinishedOnboarding(false);
   };
 
   return (

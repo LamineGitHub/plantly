@@ -19,13 +19,15 @@ export type PlantType = {
 // Store Types
 export type UserState = {
   hasFinishedOnboarding: boolean;
-  toggleHasOnboarded: () => void;
+  setHasFinishedOnboarding: (value: boolean) => void;
 };
 
 export type PlantsState = {
   nextId: number;
   plants: PlantType[];
+  doesPlantExist: (name: string) => boolean;
   addPlant: (name: string, wateringFrequencyDays: number) => void;
   removePlant: (plantId: string) => void;
+  resetPlants: () => void;
   waterPlant: (plantId: string) => void;
 };

@@ -7,7 +7,7 @@ import { useUserStore } from "@/store/useStore";
 export default function Layout() {
   const hasFinishedOnboarding = useUserStore((s) => s.hasFinishedOnboarding);
 
-  if (!hasFinishedOnboarding) {
+  if (hasFinishedOnboarding) {
     return <Redirect href="/" />;
   }
 
