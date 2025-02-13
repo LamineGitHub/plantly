@@ -17,6 +17,7 @@ export default function Home() {
       keyExtractor={(item) => item.id}
       ListEmptyComponent={() => (
         <PlantlyButton
+          className="mt-3"
           title="Add your first plant"
           onPress={() => router.navigate("/newPlant")}
         />
