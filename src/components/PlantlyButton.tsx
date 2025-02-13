@@ -17,7 +17,7 @@ export function PlantlyButton({ title, className, onPress }: Props) {
   return (
     <Pressable
       onPress={handlePressed}
-      className={`rounded-md bg-colorGreen px-4 py-3 active:bg-colorLeafyGreen ${className}`}
+      className={`w-full rounded-md bg-colorGreen px-4 py-3 active:bg-colorLeafyGreen ${className}`}
     >
       <Text className="text-center font-inter-bold text-lg text-white">
         {title}
