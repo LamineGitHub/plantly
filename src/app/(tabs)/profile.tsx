@@ -12,7 +12,7 @@ export default function Profile() {
   );
 
   return (
-    <View className="flex-1 items-center justify-center gap-4 bg-white">
+    <View className="flex-1 items-center justify-center gap-4 bg-white p-6">
       <Text className="font-inter-bold text-5xl font-semibold">Profile</Text>
       <PlantlyButton
         title="Back to onboarding"
