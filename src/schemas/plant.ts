@@ -7,7 +7,6 @@ export const createPlantSchema = () => {
   return z.object({
     name: z
       .string({
-        required_error: "Plant name is required",
         invalid_type_error: "Plant name must be a string",
       })
       .trim()
@@ -24,11 +23,9 @@ export const createPlantSchema = () => {
       ),
     days: z
       .string({
-        required_error: "Watering frequency is required",
         invalid_type_error: "Watering frequency must be a number",
       })
       .trim()
-      .regex(/^[1-9][0-9]*$/, "Please enter a valid number greater than 0")
       .transform((val) => parseInt(val, 10))
       .refine((days) => days > 0, "Days must be greater than 0")
       .refine((days) => days <= 365, "Maximum watering interval is 365 days"),
