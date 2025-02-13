@@ -44,7 +44,7 @@ export default function PlantDetails() {
           style: "destructive",
           onPress: () => {
             removePlant(plant.id);
-            router.navigate("/home");
+            router.replace("/home");
           },
         },
         {
