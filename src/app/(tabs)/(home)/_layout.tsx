@@ -1,6 +1,6 @@
+import { Pressable } from "react-native";
 import { Link, Stack } from "expo-router";
 import { CirclePlus } from "lucide-react-native";
-import { Pressable } from "react-native";
 import { theme } from "@/theme";
 
 export default function Layout() {
@@ -11,6 +11,7 @@ export default function Layout() {
         options={{
           title: "Home",
           headerShown: true,
+          headerBackVisible: false,
           headerTitleStyle: {
             fontFamily: "Inter-bold",
             fontSize: 24,
@@ -24,6 +25,7 @@ export default function Layout() {
           ),
         }}
       />
+      <Stack.Screen name="plant/[plantId]" />
     </Stack>
   );
 }
