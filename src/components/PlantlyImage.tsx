@@ -13,7 +13,6 @@ export function PlantlyImage({ size, imageUri }: Props) {
 
   return (
     <Image
-      className="border"
       source={imageUri ? { uri: imageUri } : require("@/assets/plantly.png")}
       style={{ width: imageSize, height: imageSize, borderRadius: 6 }}
     />
