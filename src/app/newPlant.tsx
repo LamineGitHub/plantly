@@ -24,9 +24,9 @@ export default function NewPlant() {
     mode: "onBlur",
   });
 
-  const addPlant = usePlantStore((state) => state.addPlant);
   const router = useRouter();
   const [imageUri, setImageUri] = useState("");
+  const addPlant = usePlantStore((state) => state.addPlant);
 
   const onSubmit = ({ name, days }: PlantFormData) => {
     addPlant(name, days, imageUri);
