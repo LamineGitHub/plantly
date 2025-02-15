@@ -3,7 +3,7 @@ import { PlantType } from "@/types";
 import { PlantlyImage } from "@/components/PlantlyImage";
 import { Link } from "expo-router";
 
-export default function PlantCard({ plant }: { plant: PlantType }) {
+export function PlantCard({ plant }: { plant: PlantType }) {
   return (
     <Link href={`/plant/${plant.id}`} asChild>
       <Pressable className="mb-3 flex-row rounded-md bg-white p-3 shadow-md shadow-black/60">

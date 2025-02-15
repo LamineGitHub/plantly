@@ -1,17 +1,17 @@
-import { Text, View } from "react-native";
 import { useRouter } from "expo-router";
-import { PlantlyButton } from "@/components/PlantlyButton";
-import { LinearGradient } from "expo-linear-gradient";
-import { theme } from "@/theme";
+import { Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { LinearGradient } from "expo-linear-gradient";
+
+import { theme } from "@/theme";
+import { PlantlyButton } from "@/components/PlantlyButton";
 import { PlantlyImage } from "@/components/PlantlyImage";
-import { useUserStore } from "@/store/useStore";
+import { useOnboardingStore } from "@/store/useOnboardingStore";
 
 export default function OnboardingScreen() {
   const router = useRouter();
-  const setHasFinishedOnboarding = useUserStore(
-    (state) => state.setHasFinishedOnboarding,
-  );
+  const setHasFinishedOnboarding =
+    useOnboardingStore.use.setHasFinishedOnboarding();
 
   const handlePress = () => {
     router.replace("/home");

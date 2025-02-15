@@ -6,11 +6,11 @@ import { Controller, useForm } from "react-hook-form";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as ImagePicker from "expo-image-picker";
 
-import { PlantlyButton } from "@/components/PlantlyButton";
+import { usePlantsStore } from "@/store/usePlantsStore";
 import { PlantlyImage } from "@/components/PlantlyImage";
+import { PlantlyButton } from "@/components/PlantlyButton";
 import { PlantyRowForm } from "@/components/PlantyRowForm";
 import { createPlantSchema, type PlantFormData } from "@/schemas/plant";
-import { usePlantStore } from "@/store/plantsStore";
 
 export default function NewPlant() {
   const {
@@ -26,7 +26,7 @@ export default function NewPlant() {
 
   const router = useRouter();
   const [imageUri, setImageUri] = useState("");
-  const addPlant = usePlantStore((state) => state.addPlant);
+  const addPlant = usePlantsStore.use.addPlant();
 
   const onSubmit = ({ name, days }: PlantFormData) => {
     addPlant(name, days, imageUri);

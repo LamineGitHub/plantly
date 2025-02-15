@@ -1,10 +1,10 @@
 import { Redirect, Tabs } from "expo-router";
 import { Leaf, User } from "lucide-react-native";
 import { theme } from "@/theme";
-import { useUserStore } from "@/store/useStore";
+import { useOnboardingStore } from "@/store/useOnboardingStore";
 
 export default function Layout() {
-  const hasFinishedOnboarding = useUserStore((s) => s.hasFinishedOnboarding);
+  const hasFinishedOnboarding = useOnboardingStore.use.hasFinishedOnboarding();
 
   if (hasFinishedOnboarding) {
     return <Redirect href="/" />;

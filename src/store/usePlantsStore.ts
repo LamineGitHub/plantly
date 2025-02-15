@@ -3,8 +3,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { PlantsState } from "@/types";
 import * as FileSystem from "expo-file-system";
+import { createSelectors } from "@/store/selectors";
 
-export const usePlantStore = create<PlantsState>()(
+const usePlantsStoreBase = create<PlantsState>()(
   persist(
     (set, get) => ({
       nextId: 1,
@@ -70,3 +71,5 @@ export const usePlantStore = create<PlantsState>()(
     },
   ),
 );
+
+export const usePlantsStore = createSelectors(usePlantsStoreBase);

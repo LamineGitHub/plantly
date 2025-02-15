@@ -1,8 +1,8 @@
-import { usePlantStore } from "@/store/plantsStore";
+import { usePlantsStore } from "@/store/usePlantsStore";
 import { z } from "zod";
 
 export const createPlantSchema = () => {
-  const { doesPlantExist } = usePlantStore.getState();
+  const { doesPlantExist } = usePlantsStore.getState();
 
   return z.object({
     name: z

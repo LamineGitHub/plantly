@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { Alert, Text, View } from "react-native";
 import { differenceInCalendarDays, format } from "date-fns";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
-import { usePlantStore } from "@/store/plantsStore";
-import { PlantlyButton } from "@/components/PlantlyButton";
+
+import { usePlantsStore } from "@/store/usePlantsStore";
 import { PlantlyImage } from "@/components/PlantlyImage";
+import { PlantlyButton } from "@/components/PlantlyButton";
 
 const fullDateFormat = "LLL d yyyy, h:mm aaa";
 
@@ -12,11 +13,9 @@ export default function PlantDetails() {
   const { plantId } = useLocalSearchParams();
   const navigation = useNavigation();
   const router = useRouter();
-  const waterPlant = usePlantStore((state) => state.waterPlant);
-  const removePlant = usePlantStore((state) => state.removePlant);
-  const plant = usePlantStore((state) =>
-    state.plants.find((p) => p.id === plantId),
-  );
+  const waterPlant = usePlantsStore.use.waterPlant();
+  const removePlant = usePlantsStore.use.removePlant();
+  const plant = usePlantsStore.use.plants().find((p) => p.id === plantId);
 
   useEffect(() => {
     navigation.setOptions({
