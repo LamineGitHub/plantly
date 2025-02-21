@@ -21,7 +21,7 @@
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.plantly"
+      "package": "com.lamine.plantly"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
