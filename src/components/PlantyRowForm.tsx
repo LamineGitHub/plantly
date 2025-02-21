@@ -23,7 +23,7 @@ export function PlantyRowForm({
         placeholder={placeholder}
         onChangeText={onChange}
         onBlur={onBlur}
-        className={`rounded-md border px-3 font-inter text-lg ${
+        className={`rounded-md border p-3 font-inter text-lg ${
           error ? "border-red-500" : "border-gray-300"
         }`}
         {...rest}
