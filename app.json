@@ -32,6 +32,17 @@
         {
           "origin": "https://n"
         }
+      ],
+      [
+        "expo-quick-actions",
+        {
+          "androidIcons": {
+            "leaf": {
+              "foregroundImage": "./src/assets/leaf.png",
+              "backgroundColor": "#ffffff"
+            }
+          }
+        }
       ]
     ],
     "fonts": [
@@ -47,6 +58,11 @@
       {
         "asset": "assets/fonts/Inter-SemiBold.ttf"
       }
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": "https://n"
+      }
+    }
   }
 }

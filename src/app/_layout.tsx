@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import * as QuickActions from "expo-quick-actions";
+import { useQuickActionRouting } from "expo-quick-actions/router";
+import { Platform } from "react-native";
 import { useFonts } from "expo-font";
 import "../global.css";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  useQuickActionRouting();
+
   const [loaded, error] = useFonts({
     "Inter-bold": require("@/assets/fonts/Inter-Bold.ttf"),
     "Inter-medium": require("@/assets/fonts/Inter-Medium.ttf"),
@@ -15,6 +20,17 @@ export default function RootLayout() {
     "Inter-italic": require("@/assets/fonts/Inter-Italic.ttf"),
     Caveat: require("@/assets/fonts/Caveat-Regular.ttf"),
   });
+
+  useEffect(() => {
+    QuickActions.setItems([
+      {
+        title: "Add a plant",
+        icon: Platform.OS === "ios" ? "symbol:leaf" : "leaf",
+        id: "0",
+        params: { href: "/newPlant" },
+      },
+    ]);
+  }, []);
 
   useEffect(() => {
     if (error) throw error;
