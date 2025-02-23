@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { SplashScreen, Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+import { useFonts } from "expo-font";
 import * as QuickActions from "expo-quick-actions";
 import { useQuickActionRouting } from "expo-quick-actions/router";
+import { SplashScreen, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
 import { Platform } from "react-native";
-import { useFonts } from "expo-font";
 import "../global.css";
 
 SplashScreen.preventAutoHideAsync();
@@ -41,7 +41,7 @@ export default function RootLayout() {
 
   return (
     <>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" options={{ animation: "fade" }} />
         <Stack.Screen
